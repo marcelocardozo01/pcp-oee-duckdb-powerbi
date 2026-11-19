@@ -11,12 +11,14 @@ Confere, na camada exportada:
 Sai com codigo 1 se alguma checagem falhar.
 """
 import sys
+import os
 from pathlib import Path
 
 import duckdb
 
 RAIZ = Path(__file__).resolve().parents[1]
-EXP = RAIZ / "dados" / "exports"
+DADOS = Path(os.environ.get("PCP_DADOS") or RAIZ / "dados").resolve()   # outra fabrica: defina PCP_DADOS
+EXP = DADOS / "exports"
 
 
 def main():

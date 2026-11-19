@@ -4,13 +4,15 @@ O Power BI le estes arquivos (conector Parquet) pelo parametro PastaExports,
 e o painel HTML (painel_html/gerar_painel.py) le os mesmos arquivos.
 Uma fonte so para os dois paineis: o numero nao pode divergir.
 """
+import os
 from pathlib import Path
 
 import duckdb
 
 RAIZ = Path(__file__).resolve().parents[1]
-BANCO = RAIZ / "dados" / "pcp.duckdb"
-DESTINO = RAIZ / "dados" / "exports"
+DADOS = Path(os.environ.get("PCP_DADOS") or RAIZ / "dados").resolve()   # outra fabrica: defina PCP_DADOS
+BANCO = DADOS / "pcp.duckdb"
+DESTINO = DADOS / "exports"
 
 TABELAS = [
     # dimensoes

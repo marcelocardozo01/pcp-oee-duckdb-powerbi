@@ -4,12 +4,14 @@
   pipeline/sql/analytics/*.sql  (leem a trusted) - indicadores, perdas, confiabilidade, qualidade dos dados
 """
 import re
+import os
 from pathlib import Path
 
 import duckdb
 
 RAIZ = Path(__file__).resolve().parents[1]
-BANCO = RAIZ / "dados" / "pcp.duckdb"
+DADOS = Path(os.environ.get("PCP_DADOS") or RAIZ / "dados").resolve()   # outra fabrica: defina PCP_DADOS
+BANCO = DADOS / "pcp.duckdb"
 SQL = Path(__file__).resolve().parent / "sql"
 
 

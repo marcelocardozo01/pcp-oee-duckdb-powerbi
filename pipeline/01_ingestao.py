@@ -15,6 +15,7 @@ Tabelas criadas (camada raw): erp_*, mes_apontamento, diario_parada, diario_refu
 programa_semanal, ponto_horas, inventario_ciclico, previsao_vendas e as de config.
 """
 import re
+import os
 from pathlib import Path
 
 import duckdb
@@ -22,9 +23,10 @@ import openpyxl
 import pandas as pd
 
 RAIZ = Path(__file__).resolve().parents[1]
-BRUTOS = RAIZ / "dados" / "brutos"
+DADOS = Path(os.environ.get("PCP_DADOS") or RAIZ / "dados").resolve()   # outra fabrica: defina PCP_DADOS
+BRUTOS = DADOS / "brutos"
 CONFIG = RAIZ / "config"
-BANCO = RAIZ / "dados" / "pcp.duckdb"
+BANCO = DADOS / "pcp.duckdb"
 
 ERP = ["recursos", "produtos", "roteiros", "estrutura", "materiais", "clientes",
        "ordens_producao", "pedidos_venda", "requisicoes_material", "estoque_diario"]
@@ -49,7 +51,23 @@ def ler_aba(arquivo, aba, colunas):
     return df
 
 
+# Tipos das tabelas que vem de planilha. Planilha vazia (fabrica que ainda nao coleta aquele dado)
+# precisa virar tabela vazia com os tipos certos, senao as regras em SQL nao sabem somar nem comparar.
+D, I, N, T = "datetime64[ns]", "Int64", "float64", "string"
+TIPOS = {
+    "diario_parada": {"DATA": D, "TURNO": I, "RECURSO": T, "HORA_INICIO": T, "DURACAO_MIN": I, "MOTIVO_DIGITADO": T, "OP": I, "LIDER": T},
+    "diario_refugo": {"DATA": D, "TURNO": I, "RECURSO": T, "OP": I, "DEFEITO": T, "QUANTIDADE": I},
+    "programa_semanal": {"DATA": D, "RECURSO": T, "SEQUENCIA": I, "OP": I, "CODIGO_PRODUTO": I, "PRODUTO": T, "QTD_PROGRAMADA": I, "SEMANA": T},
+    "inventario_ciclico": {"DATA": D, "CODIGO_ITEM": T, "TIPO_ITEM": T, "SALDO_SISTEMA": N, "QTD_CONTADA": N, "CONTADOR": T},
+    "previsao_vendas": {"CODIGO_PRODUTO": I, "ANO_MES": T, "QTD_PREVISTA": I},
+}
+
+
 def criar(con, nome, df):
+    for col, tipo in TIPOS.get(nome, {}).items():
+        if col not in df.columns:
+            df[col] = None
+        df[col] = pd.to_numeric(df[col], errors="coerce").astype(tipo) if tipo in (I, N) else df[col].astype(tipo)
     con.register("df_tmp", df)
     con.execute(f"CREATE OR REPLACE TABLE {nome} AS SELECT * FROM df_tmp")
     con.unregister("df_tmp")
@@ -81,7 +99,6 @@ def main():
         "Duração (min)": "DURACAO_MIN", "Motivo": "MOTIVO_DIGITADO", "OP": "OP", "Líder": "LIDER"})
     ref = pd.concat(ref, ignore_index=True).rename(columns={
         "Data": "DATA", "Turno": "TURNO", "Máquina": "RECURSO", "Defeito": "DEFEITO", "Quantidade": "QUANTIDADE"})
-    par["OP"] = pd.to_numeric(par["OP"], errors="coerce").astype("Int64")
     criar(con, "diario_parada", par)
     criar(con, "diario_refugo", ref)
 
@@ -101,14 +118,14 @@ def main():
         CREATE OR REPLACE TABLE ponto_horas AS
         SELECT * FROM read_csv('{(BRUTOS / 'planilhas' / 'ponto_horas_trabalhadas.csv').as_posix()}', delim=';', header=true,
                                decimal_separator=',', dateformat='%d/%m/%Y',
-                               types={{'DATA': 'DATE', 'HORAS_NORMAIS': 'DOUBLE', 'HORAS_EXTRAS': 'DOUBLE'}})""")
+                               types={{'DATA': 'DATE', 'TURNO': 'BIGINT', 'CELULA': 'VARCHAR', 'QUADRO_PREVISTO': 'BIGINT',
+                                       'PRESENTES': 'BIGINT', 'HORAS_NORMAIS': 'DOUBLE', 'HORAS_EXTRAS': 'DOUBLE'}})""")
 
     # Inventario ciclico
     inv = ler_aba(BRUTOS / "planilhas" / "Inventario Ciclico_2026.xlsx", "CONTAGENS",
                   ["Data", "Código do item", "Saldo sistema", "Qtd. contada"]).rename(columns={
         "Data": "DATA", "Código do item": "CODIGO_ITEM", "Tipo": "TIPO_ITEM", "Saldo sistema": "SALDO_SISTEMA",
         "Qtd. contada": "QTD_CONTADA", "Contador": "CONTADOR"})
-    inv["CODIGO_ITEM"] = inv["CODIGO_ITEM"].astype(str)
     criar(con, "inventario_ciclico", inv)
 
     # Previsao de vendas: meses nas colunas -> uma linha por produto e mes

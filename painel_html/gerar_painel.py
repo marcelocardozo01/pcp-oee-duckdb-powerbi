@@ -8,12 +8,14 @@ celular ou anexado num e-mail.
 Uso: python painel_html/gerar_painel.py
 """
 import json
+import os
 from pathlib import Path
 
 import duckdb
 
 RAIZ = Path(__file__).resolve().parents[1]
-EXP = RAIZ / "dados" / "exports"
+DADOS = Path(os.environ.get("PCP_DADOS") or RAIZ / "dados").resolve()   # outra fabrica: defina PCP_DADOS
+EXP = DADOS / "exports"
 AQUI = Path(__file__).resolve().parent
 
 
@@ -114,10 +116,10 @@ def main():
 
     modelo = (AQUI / "modelo.html").read_text(encoding="utf-8")
     dados = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    saida = AQUI / "saida"
+    saida = Path(os.environ.get("PCP_SAIDA") or AQUI / "saida")
     saida.mkdir(exist_ok=True)
     (saida / "index.html").write_text(modelo.replace("/*__DADOS__*/null", dados), encoding="utf-8", newline="\n")
-    print(f"painel_html/saida/index.html: {(saida / 'index.html').stat().st_size / 1024:,.0f} KB")
+    print(f"{saida / 'index.html'}: {(saida / 'index.html').stat().st_size / 1024:,.0f} KB")
 
 
 if __name__ == "__main__":

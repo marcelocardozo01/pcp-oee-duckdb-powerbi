@@ -13,3 +13,6 @@ __pycache__/
 
 # Office
 ~$*
+
+# respostas baixadas do Google Forms (dados de teste ou reais)
+kit_coleta/google_forms/*.xlsx

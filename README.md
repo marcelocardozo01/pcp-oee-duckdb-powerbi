@@ -156,4 +156,5 @@ dados/exports/  tabelas lidas pelos dois painéis
 painel_html/    gerador e modelo do painel HTML
 powerbi/        relatório PBIP
 ferramentas/    gerador do PBIP, moldes das medidas HTML e validador
+kit_coleta/     planilhas de coleta, ficha de turno e importador para usar com dados reais (ver kit_coleta/GUIA.md)
 ```
