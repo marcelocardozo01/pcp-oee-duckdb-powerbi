@@ -1,0 +1,134 @@
+table fIndicador
+	lineageTag: c51fe5f8-e7cf-5c94-9160-4263bdc028f8
+
+	measure 'Valor do indicador' =
+			VAR v = SELECTEDVALUE(fIndicador[VALOR])
+			VAR u = SELECTEDVALUE(fIndicador[UNIDADE])
+			RETURN
+			    IF(ISBLANK(v), BLANK(),
+			        SWITCH(u, "%", FORMAT(v, "0.0%"), "R$", FORMAT(v, "R$ #,##0"), "ppm", FORMAT(v, "#,##0"),
+			            "un", FORMAT(v, "#,##0"), "item-dia", FORMAT(v, "#,##0"), FORMAT(v, "#,##0.0") & " " & u))
+		lineageTag: 55ceab77-73ff-5379-bb30-080a0afcc572
+
+	measure 'Meta do indicador' =
+			VAR m = SELECTEDVALUE(fIndicador[META])
+			VAR u = SELECTEDVALUE(fIndicador[UNIDADE])
+			RETURN
+			    IF(ISBLANK(m), "sem meta",
+			        SWITCH(u, "%", FORMAT(m, "0.0%"), "ppm", FORMAT(m, "#,##0"), FORMAT(m, "#,##0.0") & " " & u))
+		lineageTag: 8643a415-7718-58fb-8cbf-726b60521c47
+
+	measure 'Indicadores no alvo' = CALCULATE(COUNTROWS(fIndicador), fIndicador[STATUS] = "No alvo")
+		formatString: #,##0
+		lineageTag: 4512351c-4475-57b6-b70f-16e6e445fd12
+
+	measure 'Indicadores críticos' = CALCULATE(COUNTROWS(fIndicador), fIndicador[STATUS] = "Crítico")
+		formatString: #,##0
+		lineageTag: e2530766-8c0f-5f04-b1e3-9031b569694e
+
+	column ANO_MES
+		dataType: string
+		isHidden
+		lineageTag: fc793123-028d-590f-9bf0-28a5771992be
+		summarizeBy: none
+		sourceColumn: ANO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESCOPO
+		dataType: string
+		lineageTag: e323cb15-56e2-5437-ba84-0cae77029d49
+		summarizeBy: none
+		sourceColumn: ESCOPO
+		sortByColumn: ORDEM_ESCOPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDEM_ESCOPO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 13b2e980-fd17-5cad-9890-c702421e2657
+		summarizeBy: none
+		sourceColumn: ORDEM_ESCOPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO
+		dataType: string
+		lineageTag: 3323ee81-332c-5f7d-87bf-726a5d62b172
+		summarizeBy: none
+		sourceColumn: CODIGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAMILIA
+		dataType: string
+		lineageTag: 58fa207d-093b-5060-8238-f4a80bb33ab2
+		summarizeBy: none
+		sourceColumn: FAMILIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column INDICADOR
+		dataType: string
+		lineageTag: 044d3bb5-b9e4-5c82-b60f-dcff81b5452d
+		summarizeBy: none
+		sourceColumn: INDICADOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column UNIDADE
+		dataType: string
+		lineageTag: 0b4da4af-e0c6-500b-a1cb-37c9108c6992
+		summarizeBy: none
+		sourceColumn: UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SENTIDO
+		dataType: string
+		isHidden
+		lineageTag: e4aaffa1-a74c-560a-ac6b-474be00258d3
+		summarizeBy: none
+		sourceColumn: SENTIDO
+
+		annotation SummarizationSetBy = Automatic
+
+	column VALOR
+		dataType: double
+		isHidden
+		lineageTag: 0177d9c0-f289-5957-ac34-ec95d2bd64f1
+		summarizeBy: none
+		sourceColumn: VALOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column META
+		dataType: double
+		isHidden
+		lineageTag: 6b6c78bc-68fd-5acb-8bb5-acc91861cfdb
+		summarizeBy: none
+		sourceColumn: META
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: c13a7303-32a6-5c0e-81d6-06ad941bfd6e
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fIndicador = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "an_kpi_mensal.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"ANO_MES", "ESCOPO", "ORDEM_ESCOPO", "CODIGO", "FAMILIA", "INDICADOR", "UNIDADE", "SENTIDO", "VALOR", "META", "STATUS"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"ANO_MES", type text}, {"ESCOPO", type text}, {"ORDEM_ESCOPO", Int64.Type}, {"CODIGO", type text}, {"FAMILIA", type text}, {"INDICADOR", type text}, {"UNIDADE", type text}, {"SENTIDO", type text}, {"VALOR", type number}, {"META", type number}, {"STATUS", type text}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,39 @@
+table dProduto
+	lineageTag: 067a815e-8a6a-5536-8892-4af4307d6b6a
+
+	column CODIGO_PRODUTO
+		dataType: int64
+		formatString: 0
+		lineageTag: 50a400b2-9b18-5a38-89fc-ff46983395bf
+		summarizeBy: none
+		sourceColumn: CODIGO_PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUTO
+		dataType: string
+		lineageTag: 4d015f70-bb38-5beb-8e8c-409c6be3ee0e
+		summarizeBy: none
+		sourceColumn: PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAMILIA
+		dataType: string
+		lineageTag: fae82d04-38c5-5a07-a6b0-2a43f1e26366
+		summarizeBy: none
+		sourceColumn: FAMILIA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dProduto = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "dim_produto.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"CODIGO_PRODUTO", "PRODUTO", "FAMILIA"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"CODIGO_PRODUTO", Int64.Type}, {"PRODUTO", type text}, {"FAMILIA", type text}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

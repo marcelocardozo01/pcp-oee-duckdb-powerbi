@@ -1,0 +1,32 @@
+table dMes
+	lineageTag: 3d414aa4-3f6b-5ccc-b52e-62ef81502c4e
+
+	column ANO_MES
+		dataType: string
+		lineageTag: 597e1e3c-27c3-5e73-ac17-a9d9fb9b0f9e
+		summarizeBy: none
+		sourceColumn: ANO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ROTULO
+		dataType: string
+		lineageTag: 4b22ec04-a3ed-51d7-9aaa-6526b7841568
+		summarizeBy: none
+		sourceColumn: MES_ROTULO
+		sortByColumn: ANO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dMes = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "dim_calendario.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"ANO_MES", "MES_ROTULO"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"ANO_MES", type text}, {"MES_ROTULO", type text}}),
+				    Final = Table.Distinct(Tipos)
+				in
+				    Final
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,72 @@
+table fPerdasTempo
+	lineageTag: 46997da7-9e37-5dc9-b86c-875b4388f6b1
+
+	measure 'Horas de calendário' = SUM(fPerdasTempo[HORAS])
+		formatString: #,##0
+		lineageTag: cf9f5203-82d4-5e48-b635-698df06f7180
+
+	column ANO_MES
+		dataType: string
+		isHidden
+		lineageTag: ed250b75-c619-523e-b39c-63515bf95150
+		summarizeBy: none
+		sourceColumn: ANO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: 9e750f4d-9d61-524a-9f8b-83cdd63016c2
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDEM
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: be48d4b1-b2f6-51f2-9dfc-39d39d9dfef1
+		summarizeBy: none
+		sourceColumn: ORDEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETAPA
+		dataType: string
+		lineageTag: 37099b57-563b-55f6-962a-2612ca765513
+		summarizeBy: none
+		sourceColumn: ETAPA
+		sortByColumn: ORDEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: 4935f797-41bb-5ade-9835-291dd341d8ca
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column HORAS
+		dataType: double
+		isHidden
+		lineageTag: b569fc5d-c191-5bc6-9f2f-a7974f93bbf3
+		summarizeBy: none
+		sourceColumn: HORAS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fPerdasTempo = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "an_perdas_tempo.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"ANO_MES", "CODIGO_RECURSO", "ORDEM", "ETAPA", "TIPO", "HORAS"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"ANO_MES", type text}, {"CODIGO_RECURSO", type text}, {"ORDEM", Int64.Type}, {"ETAPA", type text}, {"TIPO", type text}, {"HORAS", type number}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

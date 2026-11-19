@@ -1,0 +1,32 @@
+table dTurno
+	lineageTag: 0cb3a83e-e886-5a07-90c7-b21b479e2f9d
+
+	column TURNO
+		dataType: int64
+		formatString: 0
+		lineageTag: ddba4ad5-aa12-5e91-b314-d429e6698667
+		summarizeBy: none
+		sourceColumn: TURNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TURNO_NOME
+		dataType: string
+		lineageTag: 461d3e0f-469a-5add-a05a-45fe9dd6122c
+		summarizeBy: none
+		sourceColumn: TURNO_NOME
+		sortByColumn: TURNO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dTurno = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "dim_turno.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"TURNO", "TURNO_NOME"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"TURNO", Int64.Type}, {"TURNO_NOME", type text}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

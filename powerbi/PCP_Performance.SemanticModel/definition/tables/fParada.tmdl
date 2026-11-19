@@ -1,0 +1,86 @@
+table fParada
+	lineageTag: 715298fe-532a-5a9d-9f6f-7b296642280b
+
+	measure 'Horas de parada não planejada' = CALCULATE(SUM(fParada[DURACAO_MIN]), fParada[PLANEJADA] = FALSE()) / 60
+		formatString: #,##0.0
+		lineageTag: af781fed-14e7-58e6-b6f9-58dbf2912227
+
+	measure 'Paradas não planejadas' = CALCULATE(COUNTROWS(fParada), fParada[PLANEJADA] = FALSE())
+		formatString: #,##0
+		lineageTag: b63018d9-5c05-59ce-8165-57c162a2635d
+
+	column DATA
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		lineageTag: f94640e0-5bee-565e-8741-c38b61ed66a8
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TURNO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cd76eee4-3c49-5381-9310-0f9f8d000ae6
+		summarizeBy: none
+		sourceColumn: TURNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: b771b278-08c6-5605-ab44-f8338f26e8e7
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DURACAO_MIN
+		dataType: double
+		isHidden
+		lineageTag: 9c927818-00a4-5cbd-b090-90b06cd8084d
+		summarizeBy: none
+		sourceColumn: DURACAO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column MOTIVO
+		dataType: string
+		lineageTag: 82f7a491-fef7-5ff4-bb1b-e0c4bd61b162
+		summarizeBy: none
+		sourceColumn: MOTIVO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA
+		dataType: string
+		lineageTag: 63b9f61c-3248-5014-8a4f-3d63217cb750
+		summarizeBy: none
+		sourceColumn: CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLANEJADA
+		dataType: boolean
+		lineageTag: 294827cc-7e61-5b32-8894-41f18c7d1aa5
+		summarizeBy: none
+		sourceColumn: PLANEJADA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fParada = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "parada.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"DATA", "TURNO", "CODIGO_RECURSO", "DURACAO_MIN", "MOTIVO", "CATEGORIA", "PLANEJADA"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"DATA", type date}, {"TURNO", Int64.Type}, {"CODIGO_RECURSO", type text}, {"DURACAO_MIN", type number}, {"MOTIVO", type text}, {"CATEGORIA", type text}, {"PLANEJADA", type logical}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

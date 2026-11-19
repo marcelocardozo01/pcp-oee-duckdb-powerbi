@@ -1,0 +1,68 @@
+table dCalendario
+	lineageTag: d226a5e1-bafa-5696-a048-b4ee336d03ab
+
+	column DATA
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 024b96f4-1bcf-5816-815b-72da500ebae5
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANO_MES
+		dataType: string
+		lineageTag: cfa9a9a7-63be-5b48-a0d1-45977bd23e9c
+		summarizeBy: none
+		sourceColumn: ANO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEMANA
+		dataType: string
+		lineageTag: 8be2deb4-46c9-574b-9a97-a04fbb1b0da8
+		summarizeBy: none
+		sourceColumn: SEMANA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIA_SEMANA
+		dataType: string
+		lineageTag: 14a4c77c-357c-56ec-ae9e-c9345991fb99
+		summarizeBy: none
+		sourceColumn: DIA_SEMANA
+		sortByColumn: NUM_DIA_SEMANA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUM_DIA_SEMANA
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fac841a9-1488-588f-908e-fedd3395a849
+		summarizeBy: none
+		sourceColumn: NUM_DIA_SEMANA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIA_UTIL
+		dataType: boolean
+		lineageTag: b7e343e0-1ee3-5c91-a455-43c34bdaefef
+		summarizeBy: none
+		sourceColumn: DIA_UTIL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "dim_calendario.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"DATA", "ANO_MES", "SEMANA", "DIA_SEMANA", "NUM_DIA_SEMANA", "DIA_UTIL"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"DATA", type date}, {"ANO_MES", type text}, {"SEMANA", type text}, {"DIA_SEMANA", type text}, {"NUM_DIA_SEMANA", Int64.Type}, {"DIA_UTIL", type logical}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

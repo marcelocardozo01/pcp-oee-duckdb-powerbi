@@ -1,0 +1,267 @@
+table fProducaoTurno
+	lineageTag: 9a26c020-ac28-5e16-8669-0028f87f6028
+
+	measure Disponibilidade = DIVIDE(SUM(fProducaoTurno[TEMPO_PRODUZINDO_MIN]), SUM(fProducaoTurno[TEMPO_PROGRAMADO_MIN]))
+		formatString: 0.0%
+		lineageTag: ef453eed-8285-5ea5-b432-b13520007cd1
+
+	measure Performance = DIVIDE(SUM(fProducaoTurno[TEMPO_TEORICO_MIN]), SUM(fProducaoTurno[TEMPO_PRODUZINDO_MIN]))
+		formatString: 0.0%
+		lineageTag: 03b2d5f9-f3b6-508b-bd4d-d600812a77a9
+
+	measure Qualidade = DIVIDE(SUM(fProducaoTurno[QTD_BOA]), SUM(fProducaoTurno[QTD_PRODUZIDA]))
+		formatString: 0.0%
+		lineageTag: 0d80919d-3295-5b40-b2db-a6161b8d107d
+
+	measure OEE = [Disponibilidade] * [Performance] * [Qualidade]
+		formatString: 0.0%
+		lineageTag: f4e48080-4558-55ff-87dc-1cdf17cf92d2
+
+	measure 'Meta OEE' = 0.75
+		formatString: 0.0%
+		lineageTag: 303f23fc-89e3-54ed-947c-bd983e218054
+
+	measure 'Peças boas' = SUM(fProducaoTurno[QTD_BOA])
+		formatString: #,##0
+		lineageTag: 1e338b6b-959b-55f8-8c01-e7278046e874
+
+	measure 'Peças produzidas' = SUM(fProducaoTurno[QTD_PRODUZIDA])
+		formatString: #,##0
+		lineageTag: 3710da5b-69d9-5254-8f81-914b5c54d9f2
+
+	measure 'Refugo %' = DIVIDE(SUM(fProducaoTurno[QTD_REFUGO]), SUM(fProducaoTurno[QTD_PRODUZIDA]))
+		formatString: 0.00%
+		lineageTag: 57a6ca5f-b7cb-55e2-8f2b-23f83ad86afb
+
+	measure FPY = DIVIDE(SUM(fProducaoTurno[QTD_BOA]) - SUM(fProducaoTurno[QTD_RETRABALHO]), SUM(fProducaoTurno[QTD_PRODUZIDA]))
+		formatString: 0.0%
+		lineageTag: 67b997e4-9571-5efb-88a6-caab7d502985
+
+	measure 'Toneladas transformadas' = SUM(fProducaoTurno[KG_TRANSFORMADO]) / 1000
+		formatString: #,##0.0
+		lineageTag: 6d5f49c6-cf0d-593f-aed7-9c863fbe4412
+
+	measure 'Horas paradas não planejadas' = SUM(fProducaoTurno[PARADA_NAO_PLANEJADA_MIN]) / 60
+		formatString: #,##0
+		lineageTag: cfa19987-1c78-5648-8096-22734820b9dd
+
+	measure 'Parada não planejada %' = DIVIDE(SUM(fProducaoTurno[PARADA_NAO_PLANEJADA_MIN]), SUM(fProducaoTurno[TEMPO_PROGRAMADO_MIN]))
+		formatString: 0.0%
+		lineageTag: 6af774c4-71be-517b-8c1e-c4e5dbe211da
+
+	measure 'MTBF (h)' = DIVIDE(SUM(fProducaoTurno[TEMPO_PRODUZINDO_MIN]) / 60, SUM(fProducaoTurno[N_QUEBRAS]))
+		formatString: #,##0.0
+		lineageTag: 4ccbc237-7045-5a32-a899-cb337d2abd8a
+
+	measure 'MTTR (min)' = DIVIDE(SUM(fProducaoTurno[QUEBRA_MIN]), SUM(fProducaoTurno[N_QUEBRAS]))
+		formatString: #,##0.0
+		lineageTag: 9b623324-9301-5e7f-9a17-01687781bbd4
+
+	measure Quebras = SUM(fProducaoTurno[N_QUEBRAS])
+		formatString: #,##0
+		lineageTag: 2a54f68a-2900-5def-bba8-81f631973be5
+
+	measure 'Custo do refugo' = SUM(fProducaoTurno[CUSTO_REFUGO])
+		formatString: \R\$ #,##0
+		lineageTag: ca32f1f0-2b96-5c7f-9f55-180b46ac4ed6
+
+	measure 'Custo das paradas' = SUM(fProducaoTurno[CUSTO_PARADA])
+		formatString: \R\$ #,##0
+		lineageTag: acfb12e2-7a89-5f05-b2cf-fbff3564aedd
+
+	column DATA
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		lineageTag: 1231a179-0183-5d85-95cb-d8f5f7963dd9
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TURNO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 27bba92a-09ec-5c3c-a832-2a70007df26b
+		summarizeBy: none
+		sourceColumn: TURNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: 83a9d40f-6983-5130-84a4-980564e2e6df
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPO_TURNO_MIN
+		dataType: double
+		isHidden
+		lineageTag: 277f98da-c770-5b9d-92dc-a3cc9241c47a
+		summarizeBy: none
+		sourceColumn: TEMPO_TURNO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARADA_PLANEJADA_MIN
+		dataType: double
+		isHidden
+		lineageTag: 88919f1c-bf5c-5f92-b82a-c9dfdf18bce4
+		summarizeBy: none
+		sourceColumn: PARADA_PLANEJADA_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPO_PROGRAMADO_MIN
+		dataType: double
+		isHidden
+		lineageTag: 0db67061-133b-5c40-8d0c-dc053d3253c4
+		summarizeBy: none
+		sourceColumn: TEMPO_PROGRAMADO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARADA_NAO_PLANEJADA_MIN
+		dataType: double
+		isHidden
+		lineageTag: 8be7409c-87bf-55ad-8aa2-fa9fd6a374e8
+		summarizeBy: none
+		sourceColumn: PARADA_NAO_PLANEJADA_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column SETUP_MIN
+		dataType: double
+		isHidden
+		lineageTag: 3a43128f-8b6f-57bb-9afa-c689c82cccea
+		summarizeBy: none
+		sourceColumn: SETUP_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUEBRA_MIN
+		dataType: double
+		isHidden
+		lineageTag: f39f56b1-1006-5a3a-992d-4bd2c81b5700
+		summarizeBy: none
+		sourceColumn: QUEBRA_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column N_QUEBRAS
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cff4d7e0-e605-5e4a-9774-15c292fa53e6
+		summarizeBy: none
+		sourceColumn: N_QUEBRAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPO_PRODUZINDO_MIN
+		dataType: double
+		isHidden
+		lineageTag: c3868f4c-2d7b-53af-9170-8b0ee905b0ea
+		summarizeBy: none
+		sourceColumn: TEMPO_PRODUZINDO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPO_NAO_APONTADO_MIN
+		dataType: double
+		isHidden
+		lineageTag: b6ecbcda-4ccf-5f92-9518-e944332fad04
+		summarizeBy: none
+		sourceColumn: TEMPO_NAO_APONTADO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPO_TEORICO_MIN
+		dataType: double
+		isHidden
+		lineageTag: 94f96a04-d4f3-5afe-b1ed-c7b71eae463e
+		summarizeBy: none
+		sourceColumn: TEMPO_TEORICO_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_PRODUZIDA
+		dataType: double
+		isHidden
+		lineageTag: 7ed3f2ff-4ef6-5b18-9577-aa6224df12ed
+		summarizeBy: none
+		sourceColumn: QTD_PRODUZIDA
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_BOA
+		dataType: double
+		isHidden
+		lineageTag: f1c064d1-1cda-57aa-848e-e77d3b3fb7a3
+		summarizeBy: none
+		sourceColumn: QTD_BOA
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_REFUGO
+		dataType: double
+		isHidden
+		lineageTag: c2985623-847d-5410-86c8-8595c86b484e
+		summarizeBy: none
+		sourceColumn: QTD_REFUGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_RETRABALHO
+		dataType: double
+		isHidden
+		lineageTag: 3b647553-023e-5f2e-9a86-c1c93c907e5b
+		summarizeBy: none
+		sourceColumn: QTD_RETRABALHO
+
+		annotation SummarizationSetBy = Automatic
+
+	column KG_TRANSFORMADO
+		dataType: double
+		isHidden
+		lineageTag: b0905488-091a-58ae-8843-bd1d193ec5ed
+		summarizeBy: none
+		sourceColumn: KG_TRANSFORMADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTO_REFUGO
+		dataType: double
+		isHidden
+		lineageTag: 4a965976-5df3-598b-9fed-d1fd331e2c65
+		summarizeBy: none
+		sourceColumn: CUSTO_REFUGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTO_PARADA
+		dataType: double
+		isHidden
+		lineageTag: 86698abb-8de1-5194-a33a-0e8d2750e748
+		summarizeBy: none
+		sourceColumn: CUSTO_PARADA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fProducaoTurno = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "producao_turno.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"DATA", "TURNO", "CODIGO_RECURSO", "TEMPO_TURNO_MIN", "PARADA_PLANEJADA_MIN", "TEMPO_PROGRAMADO_MIN", "PARADA_NAO_PLANEJADA_MIN", "SETUP_MIN", "QUEBRA_MIN", "N_QUEBRAS", "TEMPO_PRODUZINDO_MIN", "TEMPO_NAO_APONTADO_MIN", "TEMPO_TEORICO_MIN", "QTD_PRODUZIDA", "QTD_BOA", "QTD_REFUGO", "QTD_RETRABALHO", "KG_TRANSFORMADO", "CUSTO_REFUGO", "CUSTO_PARADA"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"DATA", type date}, {"TURNO", Int64.Type}, {"CODIGO_RECURSO", type text}, {"TEMPO_TURNO_MIN", type number}, {"PARADA_PLANEJADA_MIN", type number}, {"TEMPO_PROGRAMADO_MIN", type number}, {"PARADA_NAO_PLANEJADA_MIN", type number}, {"SETUP_MIN", type number}, {"QUEBRA_MIN", type number}, {"N_QUEBRAS", Int64.Type}, {"TEMPO_PRODUZINDO_MIN", type number}, {"TEMPO_NAO_APONTADO_MIN", type number}, {"TEMPO_TEORICO_MIN", type number}, {"QTD_PRODUZIDA", type number}, {"QTD_BOA", type number}, {"QTD_REFUGO", type number}, {"QTD_RETRABALHO", type number}, {"KG_TRANSFORMADO", type number}, {"CUSTO_REFUGO", type number}, {"CUSTO_PARADA", type number}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

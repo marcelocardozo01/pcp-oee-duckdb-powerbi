@@ -1,0 +1,15 @@
+# banco intermediario (recriado pelo pipeline)
+dados/*.duckdb
+dados/*.duckdb.wal
+
+# cache e configuracao local do Power BI Desktop
+**/.pbi/
+*.abf
+**/localSettings.json
+
+# Python
+__pycache__/
+.venv/
+
+# Office
+~$*

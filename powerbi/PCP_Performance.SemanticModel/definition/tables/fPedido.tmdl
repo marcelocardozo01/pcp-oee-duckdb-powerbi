@@ -1,0 +1,145 @@
+table fPedido
+	lineageTag: aa1ea766-41a1-5728-945d-f0dacc0136ac
+
+	measure Pedidos = COUNTROWS(fPedido)
+		formatString: #,##0
+		lineageTag: 39bb980b-b420-50b5-979c-2a36e8e9d25e
+
+	measure 'OTIF %' = DIVIDE(CALCULATE(COUNTROWS(fPedido), fPedido[OTIF] = TRUE()), COUNTROWS(fPedido))
+		formatString: 0.0%
+		lineageTag: a6982d1b-bb6d-5185-b7f7-b3a56e9e5b87
+
+	measure 'No prazo %' = DIVIDE(CALCULATE(COUNTROWS(fPedido), fPedido[NO_PRAZO] = TRUE()), COUNTROWS(fPedido))
+		formatString: 0.0%
+		lineageTag: d2c31cab-ed70-5f04-9031-3cc9fef2a9bf
+
+	measure 'Completo %' = DIVIDE(CALCULATE(COUNTROWS(fPedido), fPedido[COMPLETO] = TRUE()), COUNTROWS(fPedido))
+		formatString: 0.0%
+		lineageTag: 7796a0e7-7324-5b8e-912e-47c247a36388
+
+	measure 'Meta OTIF' = 0.9
+		formatString: 0.0%
+		lineageTag: b34b837b-fe11-5969-b36c-ea5f0aebd40c
+
+	measure 'Pedidos fora do OTIF' = CALCULATE(COUNTROWS(fPedido), fPedido[OTIF] = FALSE())
+		formatString: #,##0
+		lineageTag: a911d4f7-280e-59cc-b3fb-b84e4529f807
+
+	column NUMERO_PEDIDO
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a6d5bc7-c5fa-5994-975b-b04f9e002db1
+		summarizeBy: none
+		sourceColumn: NUMERO_PEDIDO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLIENTE
+		dataType: string
+		lineageTag: 02bb6939-2f0e-598d-897d-3adc6c9760ec
+		summarizeBy: none
+		sourceColumn: CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_PRODUTO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fc05b5c9-efd9-5476-b325-0c694d48949c
+		summarizeBy: none
+		sourceColumn: CODIGO_PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: 8620194f-88c8-5a67-83fa-7dd55895f744
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_PEDIDA
+		dataType: double
+		lineageTag: 7c28a7f3-8876-5385-9314-1ca683cb03c3
+		summarizeBy: none
+		sourceColumn: QTD_PEDIDA
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_ENTREGUE
+		dataType: double
+		lineageTag: 35eb6617-d29d-567c-9e3e-4db1d7dd48f1
+		summarizeBy: none
+		sourceColumn: QTD_ENTREGUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_PROMETIDA
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 32ed01ee-a739-5b22-93e6-882ae35e7b1c
+		summarizeBy: none
+		sourceColumn: DATA_PROMETIDA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATA_ENTREGA
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: ce50fbf7-65af-58ba-a30f-af56ef382503
+		summarizeBy: none
+		sourceColumn: DATA_ENTREGA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column NO_PRAZO
+		dataType: boolean
+		lineageTag: c4d41842-a2b7-524a-9b46-e5e7ec08210c
+		summarizeBy: none
+		sourceColumn: NO_PRAZO
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPLETO
+		dataType: boolean
+		lineageTag: be756dff-b7d4-5796-9536-d09391b17a26
+		summarizeBy: none
+		sourceColumn: COMPLETO
+
+		annotation SummarizationSetBy = Automatic
+
+	column OTIF
+		dataType: boolean
+		lineageTag: b8f4b133-1f65-5725-9d92-3e14c31b221f
+		summarizeBy: none
+		sourceColumn: OTIF
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIAS_ATRASO
+		dataType: int64
+		formatString: 0
+		lineageTag: 71cdf15b-9826-5ea7-8047-5e92f14f91a2
+		summarizeBy: none
+		sourceColumn: DIAS_ATRASO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fPedido = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "pedido.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"NUMERO_PEDIDO", "CLIENTE", "CODIGO_PRODUTO", "CODIGO_RECURSO", "QTD_PEDIDA", "QTD_ENTREGUE", "DATA_PROMETIDA", "DATA_ENTREGA", "NO_PRAZO", "COMPLETO", "OTIF", "DIAS_ATRASO"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"NUMERO_PEDIDO", Int64.Type}, {"CLIENTE", type text}, {"CODIGO_PRODUTO", Int64.Type}, {"CODIGO_RECURSO", type text}, {"QTD_PEDIDA", type number}, {"QTD_ENTREGUE", type number}, {"DATA_PROMETIDA", type date}, {"DATA_ENTREGA", type date}, {"NO_PRAZO", type logical}, {"COMPLETO", type logical}, {"OTIF", type logical}, {"DIAS_ATRASO", Int64.Type}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

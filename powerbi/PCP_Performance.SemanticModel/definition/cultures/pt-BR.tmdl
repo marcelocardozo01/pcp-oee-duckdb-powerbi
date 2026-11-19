@@ -1,0 +1,116 @@
+cultureInfo pt-BR
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "drecurso.codigo_recurso": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dRecurso",
+			          "ConceptualProperty": "CODIGO_RECURSO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Máquina": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "drecurso.celula": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dRecurso",
+			          "ConceptualProperty": "CELULA"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Célula": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dcalendario.data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dCalendario",
+			          "ConceptualProperty": "DATA"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dia": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dmes.mes_rotulo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dMes",
+			          "ConceptualProperty": "MES_ROTULO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mês": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "findicador.escopo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fIndicador",
+			          "ConceptualProperty": "ESCOPO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Escopo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

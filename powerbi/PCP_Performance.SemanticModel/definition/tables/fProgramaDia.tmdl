@@ -1,0 +1,97 @@
+table fProgramaDia
+	lineageTag: b2c23897-07cd-5e3c-a8c7-5b95ce1739f4
+
+	measure 'Qtd programada' = SUM(fProgramaDia[QTD_PROGRAMADA])
+		formatString: #,##0
+		lineageTag: 2c1bc759-ad7b-53c5-83ca-d82918116f5c
+
+	measure 'Qtd realizada' = SUM(fProgramaDia[QTD_REAL])
+		formatString: #,##0
+		lineageTag: e85d4e6a-5af4-5f08-b00e-8111d254cb10
+
+	measure 'Aderência ao volume' = DIVIDE(SUM(fProgramaDia[QTD_REAL]), SUM(fProgramaDia[QTD_PROGRAMADA]))
+		formatString: 0.0%
+		lineageTag: 7e8739b9-f12c-59ef-ae53-0a59dace7aee
+
+	measure 'Aderência ao mix' = DIVIDE(SUM(fProgramaDia[QTD_ADERENTE]), SUM(fProgramaDia[QTD_PROGRAMADA]))
+		formatString: 0.0%
+		lineageTag: 27772eaa-b0ae-5c82-894c-172fe5ad1284
+
+	column DATA
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		lineageTag: 293a33c0-577f-52f5-8fde-2087618f325c
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: 3c4e683f-4913-576a-af16-a4ba9e389f25
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_PRODUTO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e30c8b34-a551-51a9-b516-fac256641bfc
+		summarizeBy: none
+		sourceColumn: CODIGO_PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUMERO_OP
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c58a7d9-c391-5458-9cca-bd8fd972c4e4
+		summarizeBy: none
+		sourceColumn: NUMERO_OP
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_PROGRAMADA
+		dataType: double
+		isHidden
+		lineageTag: 51b5d05a-7759-50fc-b1b7-995cba3a5109
+		summarizeBy: none
+		sourceColumn: QTD_PROGRAMADA
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_REAL
+		dataType: double
+		isHidden
+		lineageTag: 1e01ceba-3c47-5e6c-b5cf-5880ff84598b
+		summarizeBy: none
+		sourceColumn: QTD_REAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_ADERENTE
+		dataType: double
+		isHidden
+		lineageTag: 34c94e70-ccaa-57a3-b715-d412a7023b96
+		summarizeBy: none
+		sourceColumn: QTD_ADERENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fProgramaDia = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "programa_dia.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"DATA", "CODIGO_RECURSO", "CODIGO_PRODUTO", "NUMERO_OP", "QTD_PROGRAMADA", "QTD_REAL", "QTD_ADERENTE"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"DATA", type date}, {"CODIGO_RECURSO", type text}, {"CODIGO_PRODUTO", Int64.Type}, {"NUMERO_OP", Int64.Type}, {"QTD_PROGRAMADA", type number}, {"QTD_REAL", type number}, {"QTD_ADERENTE", type number}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

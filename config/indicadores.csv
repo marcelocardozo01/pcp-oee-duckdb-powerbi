@@ -1,0 +1,45 @@
+CODIGO;FAMILIA;INDICADOR;UNIDADE;SENTIDO;META;FORMULA;FONTE
+EFI01;Eficiência;OEE;%;maior;0.75;Disponibilidade x Performance x Qualidade;Coletor (MES) + diário de bordo
+EFI02;Eficiência;Disponibilidade;%;maior;0.85;Tempo produzindo / tempo programado (turno menos paradas planejadas);Coletor (MES) + diário de bordo
+EFI03;Eficiência;Performance;%;maior;0.92;Tempo teórico das peças produzidas no ciclo padrão / tempo produzindo;Coletor (MES) + roteiro do ERP
+EFI04;Eficiência;Qualidade;%;maior;0.98;Peças boas / peças produzidas;Coletor (MES)
+EFI05;Eficiência;TEEP;%;maior;0.50;OEE x (tempo programado / tempo calendário de 24 h);Coletor (MES) + calendário
+EFI06;Eficiência;Utilização da capacidade;%;maior;0.65;Tempo programado / tempo calendário;Diário de bordo + calendário
+EFI07;Eficiência;Produção boa;mil pç;maior;;Peças produzidas menos refugo;Coletor (MES)
+EFI08;Eficiência;Produção transformada;t;maior;;Peças boas de injeção e sopro x peso da peça;Coletor (MES) + cadastro do ERP
+EFI09;Eficiência;Desvio do ciclo padrão;%;menor;0.08;Tempo produzindo / tempo teórico no ciclo padrão - 1;Coletor (MES) + roteiro do ERP
+PLA01;Programação;Aderência ao programa (volume);%;maior;0.95;Peças boas das ordens programadas / quantidade programada;Programa semanal + coletor (MES)
+PLA02;Programação;Aderência ao mix;%;maior;0.90;Soma do menor entre realizado e programado por dia e ordem / quantidade programada;Programa semanal + coletor (MES)
+PLA03;Programação;Aderência à sequência;%;maior;0.90;Ordens iniciadas na ordem do programa / ordens iniciadas;Programa semanal + coletor (MES)
+PLA04;Programação;Pontualidade das ordens;%;maior;0.85;Ordens encerradas até a data de fim programada / ordens com fim programado no mês;ERP + coletor (MES)
+PLA05;Programação;Carga sobre capacidade;%;menor;0.85;Horas-padrão programadas / horas programadas das máquinas;Programa semanal + roteiro do ERP
+ENT01;Entrega;OTIF;%;maior;0.90;Pedidos entregues no prazo e na quantidade / pedidos com data prometida no mês;ERP (pedidos)
+ENT02;Entrega;No prazo (On Time);%;maior;0.95;Pedidos entregues até a data prometida / pedidos do mês;ERP (pedidos)
+ENT03;Entrega;Completo (In Full);%;maior;0.95;Pedidos com quantidade entregue maior ou igual à pedida / pedidos do mês;ERP (pedidos)
+ENT04;Entrega;Atraso médio dos pedidos atrasados;dias;menor;2;Média de dias entre a data prometida e a entrega dos pedidos atrasados;ERP (pedidos)
+ENT05;Entrega;Ordens em atraso no fim do mês;un;menor;5;Ordens com data de necessidade vencida e ainda abertas no último dia do mês;ERP + coletor (MES)
+ENT06;Entrega;Lead time de produção;dias;menor;3;Média de dias entre o início e o fim real da ordem;Coletor (MES)
+ENT07;Entrega;Lead time do pedido;dias;menor;15;Média de dias entre a data do pedido e a entrega;ERP (pedidos)
+QUA01;Qualidade;Refugo;%;menor;0.025;Peças refugadas / peças produzidas;Coletor (MES)
+QUA02;Qualidade;Retrabalho;%;menor;0.01;Peças retrabalhadas / peças produzidas;Coletor (MES)
+QUA03;Qualidade;FPY (aprovação de primeira);%;maior;0.965;Peças boas sem retrabalho / peças produzidas;Coletor (MES)
+QUA04;Qualidade;Refugo em PPM;ppm;menor;25000;Peças refugadas por milhão de peças produzidas;Coletor (MES)
+QUA05;Qualidade;Custo do refugo;R$;menor;;Peças refugadas x custo padrão;Coletor (MES) + cadastro do ERP
+MAN01;Paradas e manutenção;Horas paradas não planejadas;h;menor;;Soma das paradas não planejadas incluindo setup;Diário de bordo
+MAN02;Paradas e manutenção;Parada não planejada sobre o tempo programado;%;menor;0.15;Minutos de parada não planejada / tempo programado;Diário de bordo
+MAN03;Paradas e manutenção;MTBF;h;maior;16;Horas produzindo / número de quebras (manutenção corretiva);Diário de bordo + coletor (MES)
+MAN04;Paradas e manutenção;MTTR;min;menor;55;Minutos de manutenção corretiva / número de quebras;Diário de bordo
+MAN05;Paradas e manutenção;Tempo médio de setup;min;menor;60;Minutos de troca de molde ou ferramenta / número de trocas;Diário de bordo
+MAN06;Paradas e manutenção;Tempo em setup sobre o tempo programado;%;menor;0.04;Minutos de setup / tempo programado;Diário de bordo
+MAN07;Paradas e manutenção;Custo das paradas não planejadas;R$;menor;;Horas de parada não planejada x custo hora da máquina;Diário de bordo + cadastro do ERP
+MAT01;Materiais e estoques;Giro de estoque de matéria-prima;x ao ano;maior;24;Consumo do mês a custo x 12 / estoque médio de matéria-prima;ERP (requisições e estoque)
+MAT02;Materiais e estoques;Cobertura de matéria-prima;dias;menor;15;Estoque médio de matéria-prima / consumo médio diário;ERP (requisições e estoque)
+MAT03;Materiais e estoques;Acuracidade do inventário;%;maior;0.95;Contagens com diferença de até 2% do saldo do sistema / contagens;Planilha de inventário cíclico
+MAT04;Materiais e estoques;Rupturas de matéria-prima;item-dia;menor;0;Dias em que um item de matéria-prima fechou com saldo zero;ERP (estoque)
+MAT05;Materiais e estoques;Rendimento de matéria-prima;%;maior;0.96;Consumo teórico das peças boas / consumo real requisitado (resinas e masterbatch);ERP (requisições e estrutura) + coletor
+MAT06;Materiais e estoques;Estoque em processo (WIP);R$;menor;;Média diária do valor das peças boas de ordens ainda abertas;Coletor (MES) + ERP
+PES01;Pessoas;Produtividade da mão de obra;mil pç/HH;maior;;Mil peças boas / horas-homem trabalhadas;Coletor (MES) + ponto
+PES02;Pessoas;Horas extras;%;menor;0.06;Horas extras / horas totais trabalhadas;Planilha de ponto
+PES03;Pessoas;Absenteísmo;%;menor;0.035;Ausências / quadro previsto;Planilha de ponto
+DEM01;Demanda;Acurácia da previsão de vendas;%;maior;0.85;1 - soma dos erros absolutos por produto / total pedido (WMAPE);Planilha de previsão + ERP (pedidos)
+DEM02;Demanda;Viés da previsão;%;zero;0.05;Total previsto / total pedido - 1 (positivo = previsão acima do pedido);Planilha de previsão + ERP (pedidos)

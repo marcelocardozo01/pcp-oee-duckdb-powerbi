@@ -1,0 +1,5 @@
+expression PastaExports = "C:\pcp-moldara\dados\exports\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 1fd26454-c71e-5b70-bcad-4c913da39c71
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,18 @@
+CODIGO_MOTIVO;MOTIVO;CATEGORIA;PLANEJADA
+P01;Refeição;Planejada;S
+P02;Manutenção preventiva;Planejada;S
+P03;Sem programação;Planejada;S
+P04;Reunião / DDS;Planejada;S
+S01;Troca de molde / ferramenta;Setup;N
+S02;Troca de cor / material;Setup;N
+M01;Quebra mecânica;Manutenção corretiva;N
+M02;Quebra elétrica / eletrônica;Manutenção corretiva;N
+M03;Falha hidráulica;Manutenção corretiva;N
+O01;Ajuste de processo;Processo;N
+O02;Limpeza de molde / tela;Processo;N
+O03;Aguardando liberação da qualidade;Processo;N
+L01;Falta de matéria-prima;Materiais;N
+L02;Falta de embalagem;Materiais;N
+G01;Falta de operador;Pessoas;N
+U01;Falta de energia / utilidades;Utilidades;N
+N/C;Não classificado;Não classificado;N

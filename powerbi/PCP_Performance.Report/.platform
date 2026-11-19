@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "PCP_Performance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7d0c66b1-8aa7-5453-8c82-01fa8d940d77"
+  }
+}

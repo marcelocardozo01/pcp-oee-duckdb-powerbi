@@ -1,0 +1,331 @@
+table Painel
+	lineageTag: 65e788f7-0be8-5f99-a1ec-07c833e4b3af
+
+	measure 'HTML Cabeçalho Visão geral' =
+			VAR ini = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MIN(dMes[ANO_MES]))
+			VAR fim = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MAX(dMes[ANO_MES]))
+			VAR periodo = IF(ini = fim, ini, ini & " a " & fim)
+			VAR escopo = IF(HASONEVALUE(dRecurso[CODIGO_RECURSO]), "máquina " & SELECTEDVALUE(dRecurso[CODIGO_RECURSO]), IF(HASONEVALUE(dRecurso[CELULA]), "célula " & SELECTEDVALUE(dRecurso[CELULA]), "fábrica toda"))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;height:70px;box-sizing:border-box;position:relative;overflow:hidden'><div style='padding:9px 20px 0'><div style='font-size:12px;color:#C5DF16;letter-spacing:.4px'>Moldara Embalagens</div><div style='font-size:23px;font-weight:600;line-height:1.15'>Performance do PCP<span style='font-size:13px;font-weight:400;color:#A9D3DC;margin-left:12px'>" & periodo & ", " & escopo & "</span></div></div><div style='position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,#C5DF16 0 14px,#0A4250 14px 28px)'></div></div>"
+		lineageTag: 9d305369-6130-58a0-b27e-9af3b4736587
+
+	measure 'HTML Cabeçalho OEE' =
+			VAR ini = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MIN(dMes[ANO_MES]))
+			VAR fim = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MAX(dMes[ANO_MES]))
+			VAR periodo = IF(ini = fim, ini, ini & " a " & fim)
+			VAR escopo = IF(HASONEVALUE(dRecurso[CODIGO_RECURSO]), "máquina " & SELECTEDVALUE(dRecurso[CODIGO_RECURSO]), IF(HASONEVALUE(dRecurso[CELULA]), "célula " & SELECTEDVALUE(dRecurso[CELULA]), "fábrica toda"))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;height:70px;box-sizing:border-box;position:relative;overflow:hidden'><div style='padding:9px 20px 0'><div style='font-size:12px;color:#C5DF16;letter-spacing:.4px'>Moldara Embalagens</div><div style='font-size:23px;font-weight:600;line-height:1.15'>OEE e paradas<span style='font-size:13px;font-weight:400;color:#A9D3DC;margin-left:12px'>" & periodo & ", " & escopo & "</span></div></div><div style='position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,#C5DF16 0 14px,#0A4250 14px 28px)'></div></div>"
+		lineageTag: f14d73d0-e640-547e-b1d5-4899889e986c
+
+	measure 'HTML Cabeçalho Programa' =
+			VAR ini = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MIN(dMes[ANO_MES]))
+			VAR fim = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MAX(dMes[ANO_MES]))
+			VAR periodo = IF(ini = fim, ini, ini & " a " & fim)
+			VAR escopo = IF(HASONEVALUE(dRecurso[CODIGO_RECURSO]), "máquina " & SELECTEDVALUE(dRecurso[CODIGO_RECURSO]), IF(HASONEVALUE(dRecurso[CELULA]), "célula " & SELECTEDVALUE(dRecurso[CELULA]), "fábrica toda"))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;height:70px;box-sizing:border-box;position:relative;overflow:hidden'><div style='padding:9px 20px 0'><div style='font-size:12px;color:#C5DF16;letter-spacing:.4px'>Moldara Embalagens</div><div style='font-size:23px;font-weight:600;line-height:1.15'>Programa e entrega<span style='font-size:13px;font-weight:400;color:#A9D3DC;margin-left:12px'>" & periodo & ", " & escopo & "</span></div></div><div style='position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,#C5DF16 0 14px,#0A4250 14px 28px)'></div></div>"
+		lineageTag: 58f07614-7a58-5d7c-a004-79c30b44423c
+
+	measure 'HTML Cabeçalho Qualidade' =
+			VAR ini = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MIN(dMes[ANO_MES]))
+			VAR fim = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MAX(dMes[ANO_MES]))
+			VAR periodo = IF(ini = fim, ini, ini & " a " & fim)
+			VAR escopo = IF(HASONEVALUE(dRecurso[CODIGO_RECURSO]), "máquina " & SELECTEDVALUE(dRecurso[CODIGO_RECURSO]), IF(HASONEVALUE(dRecurso[CELULA]), "célula " & SELECTEDVALUE(dRecurso[CELULA]), "fábrica toda"))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;height:70px;box-sizing:border-box;position:relative;overflow:hidden'><div style='padding:9px 20px 0'><div style='font-size:12px;color:#C5DF16;letter-spacing:.4px'>Moldara Embalagens</div><div style='font-size:23px;font-weight:600;line-height:1.15'>Qualidade<span style='font-size:13px;font-weight:400;color:#A9D3DC;margin-left:12px'>" & periodo & ", " & escopo & "</span></div></div><div style='position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,#C5DF16 0 14px,#0A4250 14px 28px)'></div></div>"
+		lineageTag: 9edfa822-6a61-5c54-88eb-8a302b9db5bb
+
+	measure 'HTML Cabeçalho Indicadores' =
+			VAR ini = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MIN(dMes[ANO_MES]))
+			VAR fim = LOOKUPVALUE(dMes[MES_ROTULO], dMes[ANO_MES], MAX(dMes[ANO_MES]))
+			VAR periodo = fim
+			VAR escopo = IF(HASONEVALUE(fIndicador[ESCOPO]), SELECTEDVALUE(fIndicador[ESCOPO]), "Fábrica")
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;height:70px;box-sizing:border-box;position:relative;overflow:hidden'><div style='padding:9px 20px 0'><div style='font-size:12px;color:#C5DF16;letter-spacing:.4px'>Moldara Embalagens</div><div style='font-size:23px;font-weight:600;line-height:1.15'>Todos os indicadores<span style='font-size:13px;font-weight:400;color:#A9D3DC;margin-left:12px'>" & periodo & ", " & escopo & "</span></div></div><div style='position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,#C5DF16 0 14px,#0A4250 14px 28px)'></div></div>"
+		lineageTag: 679a20c3-9d01-5e9b-9e4d-a88a621032f5
+
+	measure 'HTML Cartões Visão geral' =
+			VAR v1 = [OEE]
+			VAR c1 = IF(v1 >= 0.75, "#C5DF16", IF(v1 >= 0.675, "#F2F2F2", "#FF7A6B"))
+			VAR r1 = IF(v1 >= 0.75, "✓ No alvo", IF(v1 >= 0.675, "! Atenção", "✕ Crítico"))
+			VAR w1 = FORMAT(INT(MIN(1, DIVIDE(v1, 1)) * 100), "0")
+			VAR v2 = [Aderência ao mix]
+			VAR c2 = IF(v2 >= 0.9, "#C5DF16", IF(v2 >= 0.81, "#F2F2F2", "#FF7A6B"))
+			VAR r2 = IF(v2 >= 0.9, "✓ No alvo", IF(v2 >= 0.81, "! Atenção", "✕ Crítico"))
+			VAR w2 = FORMAT(INT(MIN(1, DIVIDE(v2, 1)) * 100), "0")
+			VAR v3 = [OTIF %]
+			VAR c3 = IF(v3 >= 0.9, "#C5DF16", IF(v3 >= 0.81, "#F2F2F2", "#FF7A6B"))
+			VAR r3 = IF(v3 >= 0.9, "✓ No alvo", IF(v3 >= 0.81, "! Atenção", "✕ Crítico"))
+			VAR w3 = FORMAT(INT(MIN(1, DIVIDE(v3, 1)) * 100), "0")
+			VAR v4 = [Refugo %]
+			VAR c4 = IF(v4 <= 0.025, "#C5DF16", IF(v4 <= 0.0275, "#F2F2F2", "#FF7A6B"))
+			VAR r4 = IF(v4 <= 0.025, "✓ No alvo", IF(v4 <= 0.0275, "! Atenção", "✕ Crítico"))
+			VAR w4 = FORMAT(INT(MIN(1, DIVIDE(v4, 0.05)) * 100), "0")
+			VAR v5 = [Parada não planejada %]
+			VAR c5 = IF(v5 <= 0.15, "#C5DF16", IF(v5 <= 0.165, "#F2F2F2", "#FF7A6B"))
+			VAR r5 = IF(v5 <= 0.15, "✓ No alvo", IF(v5 <= 0.165, "! Atenção", "✕ Crítico"))
+			VAR w5 = FORMAT(INT(MIN(1, DIVIDE(v5, 0.3)) * 100), "0")
+			VAR v6 = [MTBF (h)]
+			VAR c6 = IF(v6 >= 16, "#C5DF16", IF(v6 >= 14.4, "#F2F2F2", "#FF7A6B"))
+			VAR r6 = IF(v6 >= 16, "✓ No alvo", IF(v6 >= 14.4, "! Atenção", "✕ Crítico"))
+			VAR w6 = FORMAT(INT(MIN(1, DIVIDE(v6, 21.3)) * 100), "0")
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;display:flex;gap:12px'>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c1 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>OEE</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v1, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w1 & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 75%</span><span style='font-weight:600;color:" & c1 & "'>" & r1 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c2 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Aderência ao mix</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v2, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w2 & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 90%</span><span style='font-weight:600;color:" & c2 & "'>" & r2 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c3 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>OTIF</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v3, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w3 & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 90%</span><span style='font-weight:600;color:" & c3 & "'>" & r3 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c4 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Refugo</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v4, "0.00%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w4 & "%'></div><div style='position:absolute;left:50%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≤ 2,5%</span><span style='font-weight:600;color:" & c4 & "'>" & r4 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c5 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Parada não planejada</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v5, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w5 & "%'></div><div style='position:absolute;left:50%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≤ 15%</span><span style='font-weight:600;color:" & c5 & "'>" & r5 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c6 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>MTBF</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v6, "#,##0.0") & " h" & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w6 & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 16 h</span><span style='font-weight:600;color:" & c6 & "'>" & r6 & "</span></div></div>"
+			    & "</div>"
+		lineageTag: 229ed892-cfff-54fc-a395-6b6d5e415395
+
+	measure 'HTML Cascata' =
+			VAR t = FILTER(ADDCOLUMNS(SUMMARIZE(fPerdasTempo, fPerdasTempo[ORDEM], fPerdasTempo[ETAPA], fPerdasTempo[TIPO]), "@h", [Horas de calendário]), [@h] >= 1)
+			VAR tot = SUMX(t, [@h])
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:126px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Para onde foram as horas das máquinas</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>As 24 horas de calendário de cada máquina: o que virou peça boa e o que se perdeu no caminho.</div><div style='display:flex;gap:2px;height:30px;margin-bottom:11px'>"
+			    & CONCATENATEX(t, "<div style='flex:" & FORMAT(INT([@h]), "0") & " 0 0;min-width:3px;border-radius:4px;font-size:12px;font-weight:600;padding:6px 7px;white-space:nowrap;overflow:hidden;box-sizing:border-box;background:" & SWITCH(fPerdasTempo[TIPO], "Produtivo", "#53D1EC", "Disponibilidade", "#C5DF16", "Performance", "#DDF156", "Qualidade", "#F2F2F2", "#2B7585") & ";color:" & IF(fPerdasTempo[TIPO] = "Fora da carga", "#F2F2F2", "#0A4250") & "'>" & IF(DIVIDE([@h], tot) > 0.06, FORMAT(DIVIDE([@h], tot), "0%"), "") & "</div>", "", SWITCH(fPerdasTempo[ORDEM], 9, 1, 8, 2, 7, 3, 3, 4, 4, 5, 5, 6, 6, 7, 2, 8, 9), ASC)
+			    & "</div><div style='display:flex;flex-wrap:wrap;gap:5px 18px;font-size:12px;color:#A9D3DC'>"
+			    & CONCATENATEX(t, "<span style='white-space:nowrap'><i style='display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;background:" & SWITCH(fPerdasTempo[TIPO], "Produtivo", "#53D1EC", "Disponibilidade", "#C5DF16", "Performance", "#DDF156", "Qualidade", "#F2F2F2", "#2B7585") & "'></i>" & fPerdasTempo[ETAPA] & " <b style='color:#F2F2F2;font-weight:600'>" & FORMAT([@h], "#,##0") & " h" & "</b></span>", "", SWITCH(fPerdasTempo[ORDEM], 9, 1, 8, 2, 7, 3, 3, 4, 4, 5, 5, 6, 6, 7, 2, 8, 9), ASC)
+			    & "</div></div>"
+		lineageTag: 3e86ed7a-2276-59d7-8406-b44586cef5ab
+
+	measure 'HTML Máquinas' =
+			VAR t = FILTER(ADDCOLUMNS(SUMMARIZE(dRecurso, dRecurso[CODIGO_RECURSO], dRecurso[RECURSO]), "@o", [OEE], "@d", [Disponibilidade], "@p", [Performance], "@q", [Qualidade]), NOT ISBLANK([@o]))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:352px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Máquinas</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>OEE de cada máquina contra a meta de 75%, com disponibilidade (D), performance (P) e qualidade (Q).</div><div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px'>"
+			    & CONCATENATEX(t, "<div style='background:#0F5160;border-radius:8px;padding:8px 10px 9px;border-top:3px solid " & IF([@o] >= 0.75, "#C5DF16", IF([@o] >= 0.675, "#F2F2F2", "#FF7A6B")) & "'><div style='display:flex;justify-content:space-between;align-items:baseline'><b style='font-size:13px;font-weight:600'>" & dRecurso[CODIGO_RECURSO] & "</b><span style='font-size:19px;font-weight:600'>" & FORMAT([@o], "0.0%") & "</span></div><div style='font-size:10.5px;color:#6FA9B5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dRecurso[RECURSO] & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:6px 0 6px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & FORMAT(INT(MIN(1, [@o]) * 100), "0") & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:10.5px;color:#A9D3DC'>" & "<span>D <b style='color:#F2F2F2;font-weight:600'>" & FORMAT([@d], "0%") & "</b></span>" & "<span>P <b style='color:#F2F2F2;font-weight:600'>" & FORMAT([@p], "0%") & "</b></span>" & "<span>Q <b style='color:#F2F2F2;font-weight:600'>" & FORMAT([@q], "0%") & "</b></span>" & "</div></div>", "", dRecurso[CODIGO_RECURSO], ASC)
+			    & "</div></div>"
+		lineageTag: 22d0d840-70a4-5cf1-a5c4-a932325f92c7
+
+	measure 'HTML Cartões OEE' =
+			VAR v1 = [OEE]
+			VAR c1 = IF(v1 >= 0.75, "#C5DF16", IF(v1 >= 0.675, "#F2F2F2", "#FF7A6B"))
+			VAR r1 = IF(v1 >= 0.75, "✓ No alvo", IF(v1 >= 0.675, "! Atenção", "✕ Crítico"))
+			VAR w1 = FORMAT(INT(MIN(1, DIVIDE(v1, 1)) * 100), "0")
+			VAR v2 = [Disponibilidade]
+			VAR c2 = IF(v2 >= 0.85, "#C5DF16", IF(v2 >= 0.765, "#F2F2F2", "#FF7A6B"))
+			VAR r2 = IF(v2 >= 0.85, "✓ No alvo", IF(v2 >= 0.765, "! Atenção", "✕ Crítico"))
+			VAR w2 = FORMAT(INT(MIN(1, DIVIDE(v2, 1)) * 100), "0")
+			VAR v3 = [Performance]
+			VAR c3 = IF(v3 >= 0.92, "#C5DF16", IF(v3 >= 0.828, "#F2F2F2", "#FF7A6B"))
+			VAR r3 = IF(v3 >= 0.92, "✓ No alvo", IF(v3 >= 0.828, "! Atenção", "✕ Crítico"))
+			VAR w3 = FORMAT(INT(MIN(1, DIVIDE(v3, 1)) * 100), "0")
+			VAR v4 = [Qualidade]
+			VAR c4 = IF(v4 >= 0.98, "#C5DF16", IF(v4 >= 0.882, "#F2F2F2", "#FF7A6B"))
+			VAR r4 = IF(v4 >= 0.98, "✓ No alvo", IF(v4 >= 0.882, "! Atenção", "✕ Crítico"))
+			VAR w4 = FORMAT(INT(MIN(1, DIVIDE(v4, 1)) * 100), "0")
+			VAR v5 = [MTTR (min)]
+			VAR c5 = IF(v5 <= 55, "#C5DF16", IF(v5 <= 60.5, "#F2F2F2", "#FF7A6B"))
+			VAR r5 = IF(v5 <= 55, "✓ No alvo", IF(v5 <= 60.5, "! Atenção", "✕ Crítico"))
+			VAR w5 = FORMAT(INT(MIN(1, DIVIDE(v5, 110)) * 100), "0")
+			VAR v6 = [Custo das paradas]
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;display:flex;gap:12px'>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c1 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>OEE</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v1, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w1 & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 75%</span><span style='font-weight:600;color:" & c1 & "'>" & r1 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c2 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Disponibilidade</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v2, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w2 & "%'></div><div style='position:absolute;left:85%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 85%</span><span style='font-weight:600;color:" & c2 & "'>" & r2 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c3 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Performance</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v3, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w3 & "%'></div><div style='position:absolute;left:92%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 92%</span><span style='font-weight:600;color:" & c3 & "'>" & r3 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c4 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Qualidade</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v4, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w4 & "%'></div><div style='position:absolute;left:98%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 98%</span><span style='font-weight:600;color:" & c4 & "'>" & r4 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c5 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>MTTR</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v5, "#,##0.0") & " min" & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w5 & "%'></div><div style='position:absolute;left:50%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≤ 55 min</span><span style='font-weight:600;color:" & c5 & "'>" & r5 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid #078CA9'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Custo das paradas</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & "R$ " & FORMAT(v6, "#,##0") & "</div><div style='font-size:11px;color:#A9D3DC;margin-top:17px'>horas paradas × custo hora da máquina</div></div>"
+			    & "</div>"
+		lineageTag: 263491c4-9594-5d7f-8982-21b1d7ff814a
+
+	measure 'HTML OEE por máquina' =
+			VAR t0 = FILTER(ADDCOLUMNS(SUMMARIZE(dRecurso, dRecurso[CODIGO_RECURSO], dRecurso[RECURSO]), "@v", [OEE]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = 1
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>OEE por máquina</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Da melhor para a pior no período. A marca branca é a meta.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:42% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dRecurso[CODIGO_RECURSO] & "  " & dRecurso[RECURSO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:18px;background:#F2F2F2'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "0.0%") & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: addca872-6eeb-55df-a111-dc1c09e343d2
+
+	measure 'HTML Motivos de parada' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(fParada[MOTIVO]), "@v", [Horas de parada não planejada]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = MAXX(t0, [@v])
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Motivos de parada</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Horas de parada não planejada e percentual acumulado.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:44% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fParada[MOTIVO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "#,##0") & " h" & " <span style='color:#6FA9B5;margin-left:6px'>" & FORMAT([@ac], "0%") & "</span>" & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: ad7c0b55-d325-5b4c-91af-4faafaf6edf2
+
+	measure 'HTML OEE por turno' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(dTurno[TURNO_NOME]), "@v", [OEE]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = 1
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:200px;overflow:hidden'><div style='font-size:15px;font-weight:600'>OEE por turno</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>O mesmo parque, três equipes. A marca branca é a meta.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:44% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dTurno[TURNO_NOME] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div><div style='position:absolute;left:75%;top:-3px;width:2px;height:18px;background:#F2F2F2'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "0.0%") & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: f4200748-99db-56f4-9a20-c9cfd91ec81b
+
+	measure 'HTML Paradas por categoria' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(fParada[CATEGORIA]), "@v", [Horas de parada não planejada]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = MAXX(t0, [@v])
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:200px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Paradas por categoria</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Quem é o dono de cada bloco de horas.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:44% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fParada[CATEGORIA] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "#,##0") & " h" & " <span style='color:#6FA9B5;margin-left:6px'>" & FORMAT([@ac], "0%") & "</span>" & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: 5eec7a1f-943a-5f10-9adb-bd3e623696af
+
+	measure 'HTML Cartões Programa' =
+			VAR v1 = [Aderência ao volume]
+			VAR c1 = IF(v1 >= 0.95, "#C5DF16", IF(v1 >= 0.855, "#F2F2F2", "#FF7A6B"))
+			VAR r1 = IF(v1 >= 0.95, "✓ No alvo", IF(v1 >= 0.855, "! Atenção", "✕ Crítico"))
+			VAR w1 = FORMAT(INT(MIN(1, DIVIDE(v1, 1.1)) * 100), "0")
+			VAR v2 = [Aderência ao mix]
+			VAR c2 = IF(v2 >= 0.9, "#C5DF16", IF(v2 >= 0.81, "#F2F2F2", "#FF7A6B"))
+			VAR r2 = IF(v2 >= 0.9, "✓ No alvo", IF(v2 >= 0.81, "! Atenção", "✕ Crítico"))
+			VAR w2 = FORMAT(INT(MIN(1, DIVIDE(v2, 1)) * 100), "0")
+			VAR v3 = [OTIF %]
+			VAR c3 = IF(v3 >= 0.9, "#C5DF16", IF(v3 >= 0.81, "#F2F2F2", "#FF7A6B"))
+			VAR r3 = IF(v3 >= 0.9, "✓ No alvo", IF(v3 >= 0.81, "! Atenção", "✕ Crítico"))
+			VAR w3 = FORMAT(INT(MIN(1, DIVIDE(v3, 1)) * 100), "0")
+			VAR v4 = [No prazo %]
+			VAR c4 = IF(v4 >= 0.95, "#C5DF16", IF(v4 >= 0.855, "#F2F2F2", "#FF7A6B"))
+			VAR r4 = IF(v4 >= 0.95, "✓ No alvo", IF(v4 >= 0.855, "! Atenção", "✕ Crítico"))
+			VAR w4 = FORMAT(INT(MIN(1, DIVIDE(v4, 1)) * 100), "0")
+			VAR v5 = [Completo %]
+			VAR c5 = IF(v5 >= 0.95, "#C5DF16", IF(v5 >= 0.855, "#F2F2F2", "#FF7A6B"))
+			VAR r5 = IF(v5 >= 0.95, "✓ No alvo", IF(v5 >= 0.855, "! Atenção", "✕ Crítico"))
+			VAR w5 = FORMAT(INT(MIN(1, DIVIDE(v5, 1)) * 100), "0")
+			VAR v6 = [Pedidos fora do OTIF]
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;display:flex;gap:12px'>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c1 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Aderência ao volume</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v1, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w1 & "%'></div><div style='position:absolute;left:86%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 95%</span><span style='font-weight:600;color:" & c1 & "'>" & r1 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c2 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Aderência ao mix</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v2, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w2 & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 90%</span><span style='font-weight:600;color:" & c2 & "'>" & r2 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c3 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>OTIF</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v3, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w3 & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 90%</span><span style='font-weight:600;color:" & c3 & "'>" & r3 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c4 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>No prazo</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v4, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w4 & "%'></div><div style='position:absolute;left:95%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 95%</span><span style='font-weight:600;color:" & c4 & "'>" & r4 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c5 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Completo</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v5, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w5 & "%'></div><div style='position:absolute;left:95%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 95%</span><span style='font-weight:600;color:" & c5 & "'>" & r5 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid #078CA9'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Pedidos fora do OTIF</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v6, "#,##0") & "</div><div style='font-size:11px;color:#A9D3DC;margin-top:17px'>atrasados ou incompletos no período</div></div>"
+			    & "</div>"
+		lineageTag: 2bc3d24f-8c9a-5fde-8e73-055f7e8313f2
+
+	measure 'HTML Aderência por máquina' =
+			VAR t0 = FILTER(ADDCOLUMNS(SUMMARIZE(dRecurso, dRecurso[CODIGO_RECURSO], dRecurso[RECURSO]), "@v", [Aderência ao mix]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = 1
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Aderência ao mix por máquina</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Programa cumprido na ordem e no dia combinados. A marca branca é a meta.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:42% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dRecurso[CODIGO_RECURSO] & "  " & dRecurso[RECURSO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:18px;background:#F2F2F2'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "0.0%") & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: b7ba5ac3-97f2-5ef7-9208-d5c4a6ae535c
+
+	measure 'HTML OTIF por cliente' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(fPedido[CLIENTE]), "@v", [OTIF %]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = 1
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>OTIF por cliente</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Pedidos entregues no prazo e completos. A marca branca é a meta.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:46% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fPedido[CLIENTE] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div><div style='position:absolute;left:90%;top:-3px;width:2px;height:18px;background:#F2F2F2'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "0%") & " <span style='color:#6FA9B5;margin-left:6px'>" & FORMAT([Pedidos], "0") & " ped." & "</span>" & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: dbb6c9bf-c7af-5d09-8b79-e93941d26b76
+
+	measure 'HTML Pedidos fora do OTIF' =
+			VAR t = TOPN(5, FILTER(fPedido, fPedido[OTIF] = FALSE()), fPedido[DIAS_ATRASO], DESC, fPedido[NUMERO_PEDIDO], ASC)
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:200px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Pedidos fora do OTIF</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Os mais atrasados do período.</div><div style='display:grid;grid-template-columns:64px 1.3fr 1.5fr 70px 70px 54px 110px;gap:10px;font-size:11.5px;color:#A9D3DC;padding-bottom:5px;border-bottom:1px solid #6FA9B5'><div style='text-align:left'>Pedido</div><div style='text-align:left'>Cliente</div><div style='text-align:left'>Produto</div><div style='text-align:left'>Prometido</div><div style='text-align:left'>Entregue</div><div style='text-align:right'>Atraso</div><div style='text-align:right'>Entregue / pedido</div></div>"
+			    & CONCATENATEX(t, "<div style='display:grid;grid-template-columns:64px 1.3fr 1.5fr 70px 70px 54px 110px;gap:10px;font-size:12px;line-height:1.25;padding:3px 0;border-bottom:1px solid #1C6E7E'>" & "<div style='text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & FORMAT(fPedido[NUMERO_PEDIDO], "0") & "</div>" & "<div style='text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fPedido[CLIENTE] & "</div>" & "<div style='text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & RELATED(dProduto[PRODUTO]) & "</div>" & "<div style='text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & FORMAT(fPedido[DATA_PROMETIDA], "dd/mm") & "</div>" & "<div style='text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & IF(ISBLANK(fPedido[DATA_ENTREGA]), "em aberto", FORMAT(fPedido[DATA_ENTREGA], "dd/mm")) & "</div>" & "<div style='text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & FORMAT(fPedido[DIAS_ATRASO], "0") & " d" & "</div>" & "<div style='text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & FORMAT(DIVIDE(fPedido[QTD_ENTREGUE], fPedido[QTD_PEDIDA]), "0%") & "</div>" & "</div>", "", fPedido[DIAS_ATRASO] * 1000000 - fPedido[NUMERO_PEDIDO] / 1000000, DESC)
+			    & "</div>"
+		lineageTag: 9b064c73-a737-5bcc-9332-acacc0b43492
+
+	measure 'HTML Cartões Qualidade' =
+			VAR v1 = [Refugo %]
+			VAR c1 = IF(v1 <= 0.025, "#C5DF16", IF(v1 <= 0.0275, "#F2F2F2", "#FF7A6B"))
+			VAR r1 = IF(v1 <= 0.025, "✓ No alvo", IF(v1 <= 0.0275, "! Atenção", "✕ Crítico"))
+			VAR w1 = FORMAT(INT(MIN(1, DIVIDE(v1, 0.05)) * 100), "0")
+			VAR v2 = [FPY]
+			VAR c2 = IF(v2 >= 0.965, "#C5DF16", IF(v2 >= 0.8685, "#F2F2F2", "#FF7A6B"))
+			VAR r2 = IF(v2 >= 0.965, "✓ No alvo", IF(v2 >= 0.8685, "! Atenção", "✕ Crítico"))
+			VAR w2 = FORMAT(INT(MIN(1, DIVIDE(v2, 1)) * 100), "0")
+			VAR v3 = [Qualidade]
+			VAR c3 = IF(v3 >= 0.98, "#C5DF16", IF(v3 >= 0.882, "#F2F2F2", "#FF7A6B"))
+			VAR r3 = IF(v3 >= 0.98, "✓ No alvo", IF(v3 >= 0.882, "! Atenção", "✕ Crítico"))
+			VAR w3 = FORMAT(INT(MIN(1, DIVIDE(v3, 1)) * 100), "0")
+			VAR v4 = [Peças refugadas]
+			VAR v5 = [Custo do refugo]
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;display:flex;gap:12px'>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c1 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Refugo</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v1, "0.00%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w1 & "%'></div><div style='position:absolute;left:50%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≤ 2,5%</span><span style='font-weight:600;color:" & c1 & "'>" & r1 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c2 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>FPY, aprovação de primeira</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v2, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w2 & "%'></div><div style='position:absolute;left:96%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 96,5%</span><span style='font-weight:600;color:" & c2 & "'>" & r2 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid " & c3 & "'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Qualidade (fator do OEE)</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v3, "0.0%") & "</div><div style='height:5px;border-radius:3px;background:#14606F;position:relative;margin:7px 0 8px'><div style='height:5px;border-radius:3px;background:#53D1EC;width:" & w3 & "%'></div><div style='position:absolute;left:98%;top:-3px;width:2px;height:11px;background:#F2F2F2'></div></div><div style='display:flex;justify-content:space-between;font-size:11px;color:#A9D3DC'><span>meta ≥ 98%</span><span style='font-weight:600;color:" & c3 & "'>" & r3 & "</span></div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid #078CA9'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Peças refugadas</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & FORMAT(v4, "#,##0") & "</div><div style='font-size:11px;color:#A9D3DC;margin-top:17px'>contador da máquina</div></div>"
+			    & "<div style='flex:1;min-width:0;background:#0A4250;border-radius:12px;padding:11px 14px 9px;box-sizing:border-box;height:112px;border-left:4px solid #078CA9'><div style='font-size:12px;color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>Custo do refugo</div><div style='font-size:29px;font-weight:600;line-height:1.2'>" & "R$ " & FORMAT(v5, "#,##0") & "</div><div style='font-size:11px;color:#A9D3DC;margin-top:17px'>peças refugadas × custo padrão</div></div>"
+			    & "</div>"
+		lineageTag: 38d48364-a0da-5d21-8641-084e10988061
+
+	measure 'HTML Defeitos' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(fRefugoDefeito[DEFEITO]), "@v", [Peças refugadas]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = MAXX(t0, [@v])
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Defeitos que mais refugam</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Peças refugadas por defeito e percentual acumulado.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:38% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fRefugoDefeito[DEFEITO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "#,##0") & " <span style='color:#6FA9B5;margin-left:6px'>" & FORMAT([@ac], "0%") & "</span>" & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: a3dbc51d-967b-50e0-92df-e87d78158d49
+
+	measure 'HTML Refugo por máquina' =
+			VAR t0 = FILTER(ADDCOLUMNS(SUMMARIZE(dRecurso, dRecurso[CODIGO_RECURSO], dRecurso[RECURSO]), "@v", [Refugo %]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = 0.06
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:290px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Refugo por máquina</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Peças refugadas sobre as produzidas. A marca branca é a meta.</div>"
+			    & CONCATENATEX(TOPN(12, t, [@v], DESC), "<div style='display:grid;grid-template-columns:42% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dRecurso[CODIGO_RECURSO] & "  " & dRecurso[RECURSO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div><div style='position:absolute;left:42%;top:-3px;width:2px;height:18px;background:#F2F2F2'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & FORMAT([@v], "0.00%") & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: 81436f30-3b8c-54a5-9b2d-5ce5e8858ac7
+
+	measure 'HTML Refugo por produto' =
+			VAR t0 = FILTER(ADDCOLUMNS(VALUES(dProduto[PRODUTO]), "@v", [Custo do refugo por defeito]), NOT ISBLANK([@v]) && [@v] <> 0)
+			VAR tot = SUMX(t0, [@v])
+			VAR t = ADDCOLUMNS(t0, "@ac", VAR x = [@v] RETURN DIVIDE(SUMX(FILTER(t0, [@v] >= x), [@v]), tot))
+			VAR mx = MAXX(t0, [@v])
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:13px 16px 10px;box-sizing:border-box;height:200px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Onde o refugo custa mais</div><div style='font-size:12px;color:#A9D3DC;margin:1px 0 10px'>Custo do refugo por produto, em reais.</div>"
+			    & CONCATENATEX(TOPN(7, t, [@v], DESC), "<div style='display:grid;grid-template-columns:40% 1fr auto;gap:10px;align-items:center;font-size:12px;line-height:1.2;margin-bottom:4px'><div style='color:#A9D3DC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & dProduto[PRODUTO] & "</div><div style='position:relative;height:12px;background:#14606F;border-radius:0 4px 4px 0'><div style='height:12px;border-radius:0 4px 4px 0;background:#53D1EC;width:" & FORMAT(INT(MIN(1, DIVIDE([@v], mx)) * 100), "0") & "%'></div></div><div style='text-align:right;white-space:nowrap;min-width:52px'>" & "R$ " & FORMAT([@v], "#,##0") & " <span style='color:#6FA9B5;margin-left:6px'>" & FORMAT([@ac], "0%") & "</span>" & "</div></div>", "", [@v], DESC)
+			    & "</div>"
+		lineageTag: 5bf63a43-b73e-539c-8f60-034c6a6c4948
+
+	measure 'HTML Indicadores' =
+			VAR mes = MAX(fIndicador[ANO_MES])
+			VAR esc = IF(HASONEVALUE(fIndicador[ESCOPO]), SELECTEDVALUE(fIndicador[ESCOPO]), "Fábrica")
+			VAR t = CALCULATETABLE(fIndicador, fIndicador[ANO_MES] = mes, fIndicador[ESCOPO] = esc)
+			VAR alvo = COUNTROWS(FILTER(t, fIndicador[STATUS] = "No alvo"))
+			VAR comMeta = COUNTROWS(FILTER(t, fIndicador[STATUS] <> "Sem meta"))
+			RETURN
+			    "<div style='font-family:Bahnschrift,Segoe UI,sans-serif;color:#F2F2F2;line-height:1.35;background:#0A4250;border-radius:12px;padding:12px 18px;box-sizing:border-box;height:632px;overflow:hidden'><div style='font-size:15px;font-weight:600'>Indicadores do PCP <span style='font-size:12px;font-weight:400;color:#A9D3DC;margin-left:10px'>" & FORMAT(alvo, "0") & " de " & FORMAT(comMeta, "0") & " indicadores com meta estão no alvo. Sem mês selecionado, vale o mais recente.</span></div><div style='column-count:2;column-gap:32px;margin-top:4px'>"
+			    & CONCATENATEX(t, IF(RIGHT(fIndicador[CODIGO], 2) = "01", "<div style='font-size:12.5px;font-weight:600;line-height:1.2;color:#C5DF16;padding:6px 0 2px;border-bottom:1px solid #6FA9B5'>" & fIndicador[FAMILIA] & "</div>", "") & "<div style='display:grid;grid-template-columns:1fr 92px 74px 82px;gap:8px;font-size:12px;line-height:1.2;padding:2px 0;border-bottom:1px solid #1C6E7E;break-inside:avoid'><div style='white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" & fIndicador[INDICADOR] & "</div><div style='text-align:right;font-weight:600;white-space:nowrap'>" & SWITCH(fIndicador[UNIDADE], "%", FORMAT(fIndicador[VALOR], "0.0%"), "R$", "R$ " & FORMAT(fIndicador[VALOR], "#,##0"), "ppm", FORMAT(fIndicador[VALOR], "#,##0"), "un", FORMAT(fIndicador[VALOR], "#,##0"), "item-dia", FORMAT(fIndicador[VALOR], "#,##0"), FORMAT(fIndicador[VALOR], "#,##0.0") & " " & fIndicador[UNIDADE]) & "</div><div style='text-align:right;color:#A9D3DC;white-space:nowrap'>" & IF(ISBLANK(fIndicador[META]), "–", SWITCH(fIndicador[SENTIDO], "maior", "≥ ", "menor", "≤ ", "± ") & SWITCH(fIndicador[UNIDADE], "%", FORMAT(fIndicador[META], "0.0%"), "ppm", FORMAT(fIndicador[META], "#,##0"), FORMAT(fIndicador[META], "#,##0.0"))) & "</div><div style='white-space:nowrap;color:" & SWITCH(fIndicador[STATUS], "No alvo", "#C5DF16", "Atenção", "#F2F2F2", "Crítico", "#FF7A6B", "#6FA9B5") & "'>" & SWITCH(fIndicador[STATUS], "No alvo", "✓", "Atenção", "!", "Crítico", "✕", "–") & " " & fIndicador[STATUS] & "</div></div>", "", fIndicador[CODIGO], ASC)
+			    & "</div></div>"
+		lineageTag: 5f3e3282-95bb-5fed-8d92-e9382c55f23d
+
+	column Bloco
+		dataType: string
+		isHidden
+		lineageTag: 592d76d3-c195-5337-9d46-53298f3a1b2b
+		summarizeBy: none
+		sourceColumn: Bloco
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Painel = m
+		mode: import
+		source =
+				let
+				    Fonte = #table(type table [Bloco = text], {{"HTML"}})
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

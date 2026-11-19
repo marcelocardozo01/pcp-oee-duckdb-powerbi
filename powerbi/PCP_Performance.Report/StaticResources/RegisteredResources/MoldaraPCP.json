@@ -1,0 +1,167 @@
+{
+  "name": "Moldara PCP",
+  "dataColors": [
+    "#53D1EC",
+    "#C5DF16",
+    "#F2F2F2",
+    "#078CA9",
+    "#DDF156",
+    "#FF7A6B"
+  ],
+  "background": "#0A4250",
+  "foreground": "#F2F2F2",
+  "tableAccent": "#53D1EC",
+  "foregroundNeutralSecondary": "#A9D3DC",
+  "foregroundNeutralTertiary": "#6FA9B5",
+  "backgroundLight": "#14606F",
+  "backgroundNeutral": "#1C6E7E",
+  "good": "#C5DF16",
+  "neutral": "#F2F2F2",
+  "bad": "#FF7A6B",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F2F2F2"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#F2F2F2"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 10,
+      "color": "#F2F2F2"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#A9D3DC"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#0A4250"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#0A4250"
+              }
+            },
+            "radius": 12
+          }
+        ],
+        "title": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#F2F2F2"
+              }
+            },
+            "fontSize": 11
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "valueAxis": [
+          {
+            "gridlineColor": {
+              "solid": {
+                "color": "#1C6E7E"
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": "#A9D3DC"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#A9D3DC"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ]
+      }
+    },
+    "clusteredColumnChart": {
+      "*": {
+        "valueAxis": [
+          {
+            "gridlineColor": {
+              "solid": {
+                "color": "#1C6E7E"
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": "#A9D3DC"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#A9D3DC"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0F5160"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0F5160"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

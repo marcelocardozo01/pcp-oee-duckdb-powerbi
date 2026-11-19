@@ -1,0 +1,80 @@
+relationship d2c35261-925d-5fee-b611-af4a2a709baa
+	fromColumn: dCalendario.ANO_MES
+	toColumn: dMes.ANO_MES
+
+relationship 6a968f48-ee37-50c0-9530-1a021698ba67
+	fromColumn: fProducaoTurno.DATA
+	toColumn: dCalendario.DATA
+
+relationship 2a12eb83-e437-5f50-a61e-92b66e2c4e17
+	fromColumn: fProducaoTurno.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship 13a39063-5e42-5ea6-a839-fb707e1caa8a
+	fromColumn: fProducaoTurno.TURNO
+	toColumn: dTurno.TURNO
+
+relationship d87e44d7-1ef6-55f1-9ead-cb3dbe9cd3bc
+	fromColumn: fParada.DATA
+	toColumn: dCalendario.DATA
+
+relationship dceedfd4-88ae-58d9-9350-16c178ab0e06
+	fromColumn: fParada.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship d338b3a1-6bbc-5db0-a143-b9c539beaf7d
+	fromColumn: fParada.TURNO
+	toColumn: dTurno.TURNO
+
+relationship a8ffed18-f469-551f-aeb2-6b28f07e0e43
+	fromColumn: fRefugoDefeito.DATA
+	toColumn: dCalendario.DATA
+
+relationship 8b60863c-2aa6-588c-92df-a6c44c336183
+	fromColumn: fRefugoDefeito.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship deb96ac1-18b8-5266-973b-373a5338d9a0
+	fromColumn: fRefugoDefeito.CODIGO_PRODUTO
+	toColumn: dProduto.CODIGO_PRODUTO
+
+relationship 0ccb3606-d457-5697-bbef-c0a78cf2f61b
+	fromColumn: fRefugoDefeito.TURNO
+	toColumn: dTurno.TURNO
+
+relationship 038c3222-277d-5b6b-a734-00d59351bda9
+	fromColumn: fProgramaDia.DATA
+	toColumn: dCalendario.DATA
+
+relationship 148640d8-c826-528d-a7a6-4ada512e0119
+	fromColumn: fProgramaDia.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship a967d3b3-b442-5ce8-99b4-ef564adc9351
+	fromColumn: fProgramaDia.CODIGO_PRODUTO
+	toColumn: dProduto.CODIGO_PRODUTO
+
+relationship 690d885a-1d07-581f-812a-8a207a8fe044
+	fromColumn: fPedido.DATA_PROMETIDA
+	toColumn: dCalendario.DATA
+
+relationship f8a0647c-4afe-5355-bf7d-d9c14b2059af
+	fromColumn: fPedido.CODIGO_PRODUTO
+	toColumn: dProduto.CODIGO_PRODUTO
+
+relationship 1bc012d4-761b-5c35-92b6-0d75d2f0574d
+	fromColumn: fPedido.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship 3fe3dcd0-778c-58ee-8a8c-0daadcecd33e
+	fromColumn: fPerdasTempo.ANO_MES
+	toColumn: dMes.ANO_MES
+
+relationship 0f18f848-7db1-52df-906b-ddfb670e8ef9
+	fromColumn: fPerdasTempo.CODIGO_RECURSO
+	toColumn: dRecurso.CODIGO_RECURSO
+
+relationship a07fbd64-3f44-5061-bbc0-2ca9609b43a5
+	fromColumn: fIndicador.ANO_MES
+	toColumn: dMes.ANO_MES
+

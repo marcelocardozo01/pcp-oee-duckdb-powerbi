@@ -1,0 +1,89 @@
+table fRefugoDefeito
+	lineageTag: ab35cfb1-dfae-520d-994e-fa8196b7afdc
+
+	measure 'Peças refugadas' = SUM(fRefugoDefeito[QTD_REFUGO])
+		formatString: #,##0
+		lineageTag: 16a73be5-95e5-5c08-9cfd-7bcd8607d562
+
+	measure 'Custo do refugo por defeito' = SUM(fRefugoDefeito[CUSTO_REFUGO])
+		formatString: \R\$ #,##0
+		lineageTag: 6cbab40d-e4e0-586b-acc0-3824fd1c7dbf
+
+	column DATA
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		lineageTag: d4a946a5-64b4-5b1d-abaf-547d83076469
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TURNO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 117bf865-bf3f-533d-8c16-bee1cb900a99
+		summarizeBy: none
+		sourceColumn: TURNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_RECURSO
+		dataType: string
+		isHidden
+		lineageTag: a99e762d-766a-5f04-b752-1cb866fadaeb
+		summarizeBy: none
+		sourceColumn: CODIGO_RECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_PRODUTO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b1355e6e-15cd-5c53-8e03-064f9985fa97
+		summarizeBy: none
+		sourceColumn: CODIGO_PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFEITO
+		dataType: string
+		lineageTag: 2a658f94-9cbb-5131-aa4c-6c376b91e80e
+		summarizeBy: none
+		sourceColumn: DEFEITO
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTD_REFUGO
+		dataType: double
+		isHidden
+		lineageTag: 37c96964-6b7f-5a6f-bd04-3239a03ab25f
+		summarizeBy: none
+		sourceColumn: QTD_REFUGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTO_REFUGO
+		dataType: double
+		isHidden
+		lineageTag: 4cb65674-39fa-5e79-8561-3fa47d91a2ea
+		summarizeBy: none
+		sourceColumn: CUSTO_REFUGO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fRefugoDefeito = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(PastaExports & "refugo_defeito.parquet")),
+				    Colunas = Table.SelectColumns(Fonte, {"DATA", "TURNO", "CODIGO_RECURSO", "CODIGO_PRODUTO", "DEFEITO", "QTD_REFUGO", "CUSTO_REFUGO"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"DATA", type date}, {"TURNO", Int64.Type}, {"CODIGO_RECURSO", type text}, {"CODIGO_PRODUTO", Int64.Type}, {"DEFEITO", type text}, {"QTD_REFUGO", type number}, {"CUSTO_REFUGO", type number}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
